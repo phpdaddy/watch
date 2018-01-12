@@ -3,8 +3,9 @@
 .DS_Store
 
 # Application
-web/app/composer.json
-web/app/vendor
+web/vendor
+web/var/cache
+web/var/logs
 
 # PHPStorm
 .idea
