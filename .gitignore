@@ -1,0 +1,16 @@
+# Global
+.*.swp
+.DS_Store
+
+# Application
+web/app/composer.json
+web/app/vendor
+
+# PHPStorm
+.idea
+
+# Netbeans
+nbproject/
+/nbproject/
+/nbproject/private/
+/nbproject/private/private.properties
