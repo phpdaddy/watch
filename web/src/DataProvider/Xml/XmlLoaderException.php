@@ -1,6 +1,6 @@
 <?php
 
-namespace Watch\Xml;
+namespace App\DataProvider\Xml;
 
 use JMS\Serializer\Exception\RuntimeException;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Watch\MySql;
+namespace App\DataProvider\MySql;
 
 class MySqlWatchNotFoundException extends MySqlRepositoryException
 {
