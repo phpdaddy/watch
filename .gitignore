@@ -7,6 +7,9 @@ web/vendor
 web/var/cache
 web/var/logs
 
+# Data
+data
+
 # PHPStorm
 .idea
 
