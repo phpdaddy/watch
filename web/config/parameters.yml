@@ -1,0 +1,2 @@
+parameters:
+    dataProvider: "xml" # (xml,mysql)
