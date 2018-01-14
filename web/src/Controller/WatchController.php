@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\DataProvider\MySql\MySqlWatchLoaderException;
 use App\DataProvider\MySql\MySqlWatchLoader;
-use App\DataProvider\Xml\CacheServiceException;
+use App\DataProvider\Xml\XmlLoaderException;
 use App\DataProvider\Xml\XmlWatchLoader;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -36,7 +36,7 @@ class WatchController extends FOSRestController
             try {
                 $data = $this->xmlWatchLoader->loadById($id);
                 return $this->view($data, Response::HTTP_OK);
-            } catch (CacheServiceException $e) {
+            } catch (XmlLoaderException $e) {
                 return $this->view(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         } else {
