@@ -4,9 +4,21 @@ namespace App\DataProvider\MySql;
 
 use App\DataProvider\WatchLoader;
 use App\Dto\WatchDto;
+use App\Entity\Watch;
+use App\Repository\WatchRepository;
 
 class MySqlWatchLoader implements WatchLoader
 {
+    /**
+     * @var WatchRepository
+     */
+    private $watchRepository;
+
+    public function __construct(WatchRepository $watchRepository)
+    {
+        $this->watchRepository = $watchRepository;
+    }
+
     /**
      * @param string $id
      *
@@ -23,6 +35,11 @@ class MySqlWatchLoader implements WatchLoader
      */
     public function loadById(string $id): ?WatchDto
     {
-        // TODO: Implement loadById() method.
+        /**
+         * @var Watch $watch
+         */
+        $watch = $this->watchRepository->find($id);
+
+        return new WatchDto($watch->getId(), $watch->getTitle(), $watch->getPrice(), $watch->getDescription());
     }
 }
