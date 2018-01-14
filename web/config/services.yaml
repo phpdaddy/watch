@@ -3,6 +3,7 @@
 parameters:
     dataProvider: '%env(DATA_PROVIDER)%'
     xmlFilePath: '%kernel.root_dir%/../%env(XML_FILE_PATH)%'
+    cacheFilePath: '%kernel.root_dir%/../%env(CACHE_FILE_PATH)%'
 
 services:
     # default configuration for services in *this* file

@@ -8,9 +8,9 @@ use App\Dto\WatchDto;
 interface WatchLoader
 {
     /**
-     * @param string $id
+     * @param int $id
      *
      * @return WatchDto|null
      */
-    public function loadById(string $id): ?WatchDto;
+    public function loadById(int $id): ?WatchDto;
 }

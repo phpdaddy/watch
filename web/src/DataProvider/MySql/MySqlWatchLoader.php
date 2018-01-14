@@ -2,6 +2,8 @@
 
 namespace App\DataProvider\MySql;
 
+use App\DataProvider\Cache\CacheService;
+use App\DataProvider\Cache\CacheServiceException;
 use App\DataProvider\WatchLoader;
 use App\Dto\WatchDto;
 use App\Entity\Watch;
@@ -13,14 +15,20 @@ class MySqlWatchLoader implements WatchLoader
      * @var WatchRepository
      */
     private $watchRepository;
+    /**
+     * @var CacheService
+     */
+    private $cacheService;
 
-    public function __construct(WatchRepository $watchRepository)
+
+    public function __construct(WatchRepository $watchRepository, CacheService $cacheService)
     {
         $this->watchRepository = $watchRepository;
+        $this->cacheService = $cacheService;
     }
 
     /**
-     * @param string $id
+     * @param integer $id
      *
      * @return WatchDto
      *
@@ -33,7 +41,26 @@ class MySqlWatchLoader implements WatchLoader
      * such as connection
      * to a database failed.
      */
-    public function loadById(string $id): ?WatchDto
+    public function loadById(int $id): ?WatchDto
+    {
+        try {
+            $watch = $this->cacheService->loadById($id);
+        } catch (CacheServiceException $exception) {
+            throw new MySqlRepositoryException($exception->getMessage());
+        }
+        if (isset ($watch)) {
+            return $watch;
+        }
+        $watchDto = $this->loadDtoFromDbById($id);
+        try {
+            $this->cacheService->addWatch($watchDto);
+        } catch (CacheServiceException $exception) {
+            throw new MySqlRepositoryException($exception->getMessage());
+        }
+        return $watchDto;
+    }
+
+    private function loadDtoFromDbById(int $id)
     {
         /**
          * @var Watch $watch
@@ -41,11 +68,12 @@ class MySqlWatchLoader implements WatchLoader
         try {
             $watch = $this->watchRepository->find($id);
         } catch (\Exception $exception) {
-            throw new  MySqlRepositoryException($exception->getMessage());
+            throw new MySqlRepositoryException($exception->getMessage());
         }
         if (!isset($watch)) {
-            throw new  MySqlWatchNotFoundException("Watch was not found");
+            throw new MySqlWatchNotFoundException("Watch was not found");
         }
+
         return new WatchDto($watch->getId(), $watch->getTitle(), $watch->getPrice(), $watch->getDescription());
     }
 }

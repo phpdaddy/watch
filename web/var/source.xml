@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+    <entry>
+        <id>0</id>
+        <title><![CDATA[watch 0]]></title>
+        <price>52</price>
+        <description><![CDATA[Super watch from XML 0]]></description>
+    </entry>
+    <entry>
+        <id>1</id>
+        <title><![CDATA[watch 1]]></title>
+        <price>97</price>
+        <description><![CDATA[Super watch from XML 1]]></description>
+    </entry>
+    <entry>
+        <id>2</id>
+        <title><![CDATA[watch 2]]></title>
+        <price>36</price>
+        <description><![CDATA[Super watch from XML 2]]></description>
+    </entry>
+    <entry>
+        <id>3</id>
+        <title><![CDATA[watch 3]]></title>
+        <price>44</price>
+        <description><![CDATA[Super watch from XML 3]]></description>
+    </entry>
+    <entry>
+        <id>4</id>
+        <title><![CDATA[watch 4]]></title>
+        <price>80</price>
+        <description><![CDATA[Super watch from XML 4]]></description>
+    </entry>
+    <entry>
+        <id>5</id>
+        <title><![CDATA[watch 5]]></title>
+        <price>94</price>
+        <description><![CDATA[Super watch from XML 5]]></description>
+    </entry>
+    <entry>
+        <id>6</id>
+        <title><![CDATA[watch 6]]></title>
+        <price>51</price>
+        <description><![CDATA[Super watch from XML 6]]></description>
+    </entry>
+    <entry>
+        <id>7</id>
+        <title><![CDATA[watch 7]]></title>
+        <price>10</price>
+        <description><![CDATA[Super watch from XML 7]]></description>
+    </entry>
+    <entry>
+        <id>8</id>
+        <title><![CDATA[watch 8]]></title>
+        <price>70</price>
+        <description><![CDATA[Super watch from XML 8]]></description>
+    </entry>
+    <entry>
+        <id>9</id>
+        <title><![CDATA[watch 9]]></title>
+        <price>56</price>
+        <description><![CDATA[Super watch from XML 9]]></description>
+    </entry>
+    <entry>
+        <id>10</id>
+        <title><![CDATA[watch 10]]></title>
+        <price>61</price>
+        <description><![CDATA[Super watch from XML 10]]></description>
+    </entry>
+</result>
