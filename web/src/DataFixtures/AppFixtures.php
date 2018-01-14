@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
             $watch = new Watch();
             $watch->setTitle('watch ' . $i);
             $watch->setPrice(mt_rand(10, 100));
-            $watch->setDescription("Super watch " . $i);
+            $watch->setDescription("Super watch from MySQL " . $i);
             $manager->persist($watch);
         }
 
