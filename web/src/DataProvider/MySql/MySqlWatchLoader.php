@@ -38,8 +38,11 @@ class MySqlWatchLoader implements WatchLoader
         /**
          * @var Watch $watch
          */
-        $watch = $this->watchRepository->find($id);
 
+        $watch = $this->watchRepository->find($id);
+        if (!isset($watch)) {
+            throw new  MySqlWatchNotFoundException("Watch was not found");
+        }
         return new WatchDto($watch->getId(), $watch->getTitle(), $watch->getPrice(), $watch->getDescription());
     }
 }
