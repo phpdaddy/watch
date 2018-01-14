@@ -38,8 +38,11 @@ class MySqlWatchLoader implements WatchLoader
         /**
          * @var Watch $watch
          */
-
-        $watch = $this->watchRepository->find($id);
+        try {
+            $watch = $this->watchRepository->find($id);
+        } catch (\Exception $exception) {
+            throw new  MySqlRepositoryException("Fatal mysql error");
+        }
         if (!isset($watch)) {
             throw new  MySqlWatchNotFoundException("Watch was not found");
         }
