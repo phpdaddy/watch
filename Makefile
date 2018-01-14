@@ -16,6 +16,7 @@ help:
 	@echo "  test                Test application"
 
 init:
+	@$(shell cp -n $(shell pwd)/web/.env.dist $(shell pwd)/web/.env 2> /dev/null)
 	@docker run --rm -v $(shell pwd)/web:/app composer install
 
 clean:
@@ -26,6 +27,7 @@ clean:
 	@rm -Rf web/doc
 	@rm -Rf web/report
 	@rm -Rf etc/ssl/*
+	@rm -Rf web/.env
 
 docker-start: init
 	@docker-compose up -d
