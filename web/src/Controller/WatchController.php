@@ -3,49 +3,50 @@
 namespace App\Controller;
 
 use App\DataProvider\MySql\MySqlRepositoryException;
-use App\DataProvider\MySql\MySqlWatchRepository;
+use App\DataProvider\MySql\MySqlWatchLoader;
+use App\DataProvider\WatchLoader;
 use App\DataProvider\Xml\XmlLoaderException;
 use App\DataProvider\Xml\XmlWatchLoader;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @Route("/watch")
- */
-class WatchController extends Controller
+class WatchController extends FOSRestController
 {
     /**
-     * @var MySqlWatchRepository
+     * @var MySqlWatchLoader
      */
-    private $mySqlWatchRepository;
+    private $mySqlWatchLoader;
     /**
      * @var XmlWatchLoader
      */
     private $xmlWatchLoader;
 
-    public function __construct(MySqlWatchRepository $mySqlWatchRepository, XmlWatchLoader $xmlWatchLoader)
+    public function __construct(MySqlWatchLoader $mySqlWatchRepository, XmlWatchLoader $xmlWatchLoader)
     {
-        $this->mySqlWatchRepository = $mySqlWatchRepository;
+        $this->mySqlWatchLoader = $mySqlWatchRepository;
         $this->xmlWatchLoader = $xmlWatchLoader;
     }
 
     /**
-     * @Route("/{id}", requirements={"id" = "\d+"}, defaults={"id" = 1})
+     * @Rest\Get("/watch/{id}")
      */
     public function getByIdAction($id)
     {
         if ($this->container->getParameter('dataProvider') == 'xml') {
             try {
-                return $this->xmlWatchLoader->loadByIdFromXml($id);
+                $data = $this->xmlWatchLoader->loadById($id);
+                return $this->view($data, Response::HTTP_OK);
             } catch (XmlLoaderException $e) {
-                return ['error' => $e->getMessage()];
+                return $this->view(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         } else {
             // default - mysql
             try {
-                return $this->mySqlWatchRepository->getWatchById($id);
+                $data = $this->mySqlWatchLoader->loadById($id);
+                return $this->view($data, Response::HTTP_OK);
             } catch (MySqlRepositoryException $e) {
-                return ['error' => $e->getMessage()];
+                return $this->view(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         }
     }
