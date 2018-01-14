@@ -17,17 +17,17 @@ class Watch
     private $id;
 
     /**
-     * @@ORM\Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $title;
 
     /**
-     * @@ORM\Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $price;
 
     /**
-     * @@ORM\Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $description;
 

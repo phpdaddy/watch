@@ -19,9 +19,11 @@ init:
 	@$(shell cp -n $(shell pwd)/web/.env.dist $(shell pwd)/web/.env 2> /dev/null)
 	@docker run --rm -v $(shell pwd)/web:/app composer install
 
+populatedb:
+	#@docker-compose exec -T php ./bin/console doctrine:schema:update --force
+
 clean:
-	@rm -Rf data/db/mysql/*
-	@rm -Rf $(MYSQL_DUMPS_DIR)/*
+	@rm -Rf data
 	@rm -Rf web/vendor
 	@rm -Rf web/composer.lock
 	@rm -Rf web/doc
@@ -31,7 +33,6 @@ clean:
 
 docker-start: init
 	@docker-compose up -d
-	@docker-compose exec -T php ./bin/console doctrine:schema:update --force
 
 docker-stop:
 	@docker-compose down -v
