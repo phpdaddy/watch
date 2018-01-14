@@ -20,7 +20,8 @@ init:
 	@docker run --rm -v $(shell pwd)/web:/app composer install
 
 populatedb:
-	#@docker-compose exec -T php ./bin/console doctrine:schema:update --force
+	@docker-compose exec -T php ./bin/console doctrine:schema:update --force
+	@docker-compose exec -T php ./bin/console doctrine:fixtures:load
 
 clean:
 	@rm -Rf data
