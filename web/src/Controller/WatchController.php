@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\DataProvider\MySql\MySqlRepositoryException;
+use App\DataProvider\MySql\MySqlWatchLoaderException;
 use App\DataProvider\MySql\MySqlWatchLoader;
 use App\DataProvider\Xml\CacheServiceException;
 use App\DataProvider\Xml\XmlWatchLoader;
@@ -44,7 +44,7 @@ class WatchController extends FOSRestController
             try {
                 $data = $this->mySqlWatchLoader->loadById($id);
                 return $this->view($data, Response::HTTP_OK);
-            } catch (MySqlRepositoryException $e) {
+            } catch (MySqlWatchLoaderException $e) {
                 return $this->view(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         }

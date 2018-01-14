@@ -37,7 +37,7 @@ class MySqlWatchLoader implements WatchLoader
      * database, eg. watch with the
      * associated id does not exist.
      *
-     * @throws MySqlRepositoryException May be thrown on a fatal error,
+     * @throws MySqlWatchLoaderException May be thrown on a fatal error,
      * such as connection
      * to a database failed.
      */
@@ -46,7 +46,7 @@ class MySqlWatchLoader implements WatchLoader
         try {
             $watch = $this->cacheService->loadById($id);
         } catch (CacheServiceException $exception) {
-            throw new MySqlRepositoryException($exception->getMessage());
+            throw new MySqlWatchLoaderException($exception->getMessage());
         }
         if (isset ($watch)) {
             return $watch;
@@ -55,7 +55,7 @@ class MySqlWatchLoader implements WatchLoader
         try {
             $this->cacheService->addWatch($watchDto);
         } catch (CacheServiceException $exception) {
-            throw new MySqlRepositoryException($exception->getMessage());
+            throw new MySqlWatchLoaderException($exception->getMessage());
         }
         return $watchDto;
     }
@@ -68,7 +68,7 @@ class MySqlWatchLoader implements WatchLoader
         try {
             $watch = $this->watchRepository->find($id);
         } catch (\Exception $exception) {
-            throw new MySqlRepositoryException($exception->getMessage());
+            throw new MySqlWatchLoaderException($exception->getMessage());
         }
         if (!isset($watch)) {
             throw new MySqlWatchNotFoundException("Watch was not found");

@@ -2,7 +2,7 @@
 
 namespace App\DataProvider\MySql;
 
-class MySqlWatchNotFoundException extends MySqlRepositoryException
+class MySqlWatchNotFoundException extends MySqlWatchLoaderException
 {
 
 }
