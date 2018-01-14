@@ -28,7 +28,7 @@ class WatchController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/watch/{id}")
+     * @Rest\Get("/watch/{id}", requirements={"id" = "\d+"})
      */
     public function getByIdAction($id)
     {
