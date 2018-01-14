@@ -2,12 +2,15 @@
 
 namespace App\DataProvider\MySql;
 
-class MySqlWatchRepositoryImpl implements MySqlWatchRepository
+use App\DataProvider\WatchLoader;
+use App\Dto\WatchDto;
+
+class MySqlWatchLoader implements WatchLoader
 {
     /**
-     * @param int $id
+     * @param string $id
      *
-     * @return MySqlWatchDTO
+     * @return WatchDto
      *
      * @throws MySqlWatchNotFoundException Is thrown when the watch could
      * not be found in a mysql
@@ -18,8 +21,8 @@ class MySqlWatchRepositoryImpl implements MySqlWatchRepository
      * such as connection
      * to a database failed.
      */
-    public function getWatchById(int $id): MySqlWatchDTO
+    public function loadById(string $id): ?WatchDto
     {
-
+        // TODO: Implement loadById() method.
     }
 }

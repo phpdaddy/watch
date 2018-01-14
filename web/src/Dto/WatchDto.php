@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DataProvider\MySql;
+namespace App\Dto;
 
-class MySqlWatchDTO
+class WatchDto
 {
     /**
      * @var int
