@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\DataProvider\MySql\MySqlRepositoryException;
 use App\DataProvider\MySql\MySqlWatchLoader;
-use App\DataProvider\WatchLoader;
 use App\DataProvider\Xml\XmlLoaderException;
 use App\DataProvider\Xml\XmlWatchLoader;
 use FOS\RestBundle\Controller\Annotations as Rest;
