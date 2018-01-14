@@ -22,7 +22,7 @@ class Watch
     private $title;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     private $price;
 
@@ -64,17 +64,17 @@ class Watch
     }
 
     /**
-     * @return null|string
+     * @return int|null
      */
-    public function getPrice(): ?string
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
     /**
-     * @param string $price
+     * @param int $price
      */
-    public function setPrice(string $price): void
+    public function setPrice(int $price): void
     {
         $this->price = $price;
     }
