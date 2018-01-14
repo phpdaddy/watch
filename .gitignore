@@ -6,6 +6,7 @@
 web/vendor
 web/var/cache
 web/var/logs
+web/.env
 
 # Data
 data
