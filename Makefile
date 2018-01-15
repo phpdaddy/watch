@@ -13,7 +13,6 @@ help:
 	@echo "  clean               Clean directories for reset"
 	@echo "  docker-start        Create and start containers"
 	@echo "  docker-stop         Stop and clear all services"
-	@echo "  test                Test application"
 
 init:
 	@$(shell cp -n $(shell pwd)/web/.env.dist $(shell pwd)/web/.env 2> /dev/null)
@@ -39,5 +38,3 @@ docker-stop:
 	@docker-compose down -v
 	@make clean
 
-test: code-sniff
-	@docker-compose exec -T php ./vendor/bin/phpunit --colors=always --configuration ./
