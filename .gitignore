@@ -8,9 +8,6 @@ web/var/cache
 web/var/logs
 web/.env
 
-# Docker
-.env
-
 # Data
 data
 
