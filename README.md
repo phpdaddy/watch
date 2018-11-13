@@ -1,6 +1,6 @@
 # Watch
 
-Test application for Spendee by Maksym Prysiazhnyi
+Test application by Maksym Prysiazhnyi
 
 ### Prerequisites
 
